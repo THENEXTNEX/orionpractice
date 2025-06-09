@@ -1,16 +1,16 @@
 package com.Hospital;
-public class patient {
+public class Patient {
 
     private String name;
     private int age;
 
     public static void main(String[] args) {
-        patient p = new patient("Caleb", 24);
+        Patient p = new Patient("Caleb", 24);
         System.out.println(p.name);
         System.out.println(p.age);
     }
 
-    public patient(String name, int age) {
+    public Patient(String name, int age) {
         this.name = name;
         this.age = age;
     }
