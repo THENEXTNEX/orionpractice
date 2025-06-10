@@ -19,7 +19,7 @@ public class Patient {
         return name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -27,7 +27,7 @@ public class Patient {
         return age;
     }
 
-    public void setAge(){
+    public void setAge(int age){
         this.age = age;
     }
 }
