@@ -14,13 +14,18 @@ public class Courier {
     
     public void setName(String name){this.name = name;}
 
-    public List<Package> getPackage(){return packages;}
-
     public void addPackage(Package p){
         packages.add(p);
     }
 
+    public List<Package> getPackages(){
+        return packages;
+    }
+    
     public void listPackages(){
-        System.out.println(packages);
+        System.out.println("Packages for courier: "+ name);
+        for (Package p: packages){
+            System.out.println(p);
+        }
     }
 }

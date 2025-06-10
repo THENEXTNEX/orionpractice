@@ -13,7 +13,7 @@ public class Package {
 
     public String getTrackingNumber(){return trackingNumber;}
 
-    public void setTrcakingNumber(String trackingNumber){this.trackingNumber = trackingNumber;}
+    public void setTrackingNumber(String trackingNumber){this.trackingNumber = trackingNumber;}
 
     public String getDestination(){return destination;}
 
