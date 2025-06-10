@@ -13,6 +13,6 @@ public class Artist extends MediaItem{
 
     @Override
     public String toString(){
-        return super.toString() + String.format("Artist: %s", artist);
+        return super.toString() + String.format(" Artist: %s", artist);
     }
 }

@@ -13,6 +13,6 @@ public class Movie extends MediaItem{
 
     @Override
     public String toString(){
-        return super.toString() + String.format("Director: %s", director);
+        return super.toString() + String.format(" Director: %s", director);
     }
 }
