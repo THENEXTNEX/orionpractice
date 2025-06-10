@@ -18,6 +18,12 @@ public class MediaManager {
         MM.addMedia(artist2);
 
         MM.listMedia();
+
+        //Search by title passionfruit
+        System.out.println("Search by title \"Passionfruit\"");
+        for(MediaItem m : MM.searchByTitle("Passionfruit")){
+            System.out.println(m);
+        }
     }
 
     public MediaManager(){
@@ -31,5 +37,15 @@ public class MediaManager {
         for(MediaItem m: media){
             System.out.println(m);
         }
+    }
+
+    public List<MediaItem> searchByTitle(String title){
+        List<MediaItem> results = new ArrayList<>();
+        for(MediaItem m: media){
+            if(m.getTitle().equals(title)){
+                results.add(m);
+            }
+        }
+        return results;
     }
 }
