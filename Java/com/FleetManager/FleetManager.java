@@ -24,6 +24,8 @@ public class FleetManager {
         for (Vehicle v : FM.searchByMake("Toyota")) {
             System.out.println(v);
         }
+
+        FM.printVehiclesDueForSerivce();
     }
 
     public FleetManager() {
@@ -48,5 +50,17 @@ public class FleetManager {
             }
         }
         return results;
+    }
+
+    public void printVehiclesDueForSerivce(){
+        System.out.println("Vehicles due for service:");
+        for(Vehicle v: vehicles){
+            if(v instanceof Serviceable){
+                Serviceable s = (Serviceable) v;
+                if(s.isServiceDue()){
+                    System.out.println(v);
+                }
+            }
+        }
     }
 }
