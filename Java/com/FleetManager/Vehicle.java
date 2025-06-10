@@ -1,20 +1,15 @@
 package com.FleetManager;
 
 public class Vehicle { 
-    String make;
-    String model;
-    int year;
+    private String make;
+    private String model;
+    private int year;
 
     public Vehicle(String make, String model, int year){
         this.make = make;
         this.model = model;
         this.year = year;
     }
-
-    public static void main(String[] args){
-
-    }
-
     public String getMake(){return make;}
 
     public void setMake(String make){this.make = make;}

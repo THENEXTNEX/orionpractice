@@ -6,4 +6,8 @@ public class Truck extends Vehicle{
         super(make, model, year);
         this.payloadCapacity = payloadCapacity;
     }
+
+    public int getPayloadCapacity(){return payloadCapacity;}
+
+    public void setPayloadCapacity(int payloadCapacity){this.payloadCapacity = payloadCapacity;}
 }
