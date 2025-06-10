@@ -10,4 +10,10 @@ public class Truck extends Vehicle{
     public int getPayloadCapacity(){return payloadCapacity;}
 
     public void setPayloadCapacity(int payloadCapacity){this.payloadCapacity = payloadCapacity;}
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(", Payload: %d kg", payloadCapacity);
+    }
+
 }

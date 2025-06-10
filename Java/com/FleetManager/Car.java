@@ -9,4 +9,10 @@ public class Car extends Vehicle{
     public int getNumberOfDoors(){return numberOfDoors;}
 
     public void setNumberOfDoors(int numberOfDoors){this.numberOfDoors = numberOfDoors;}
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(", Doors: %d", numberOfDoors);
+    }
+
 }

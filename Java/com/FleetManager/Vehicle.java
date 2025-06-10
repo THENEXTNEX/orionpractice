@@ -21,4 +21,9 @@ public class Vehicle {
     public int getYear(){return year;}
     
     public void setYear(int year){this.year = year;}
+
+    @Override
+    public String toString() {
+        return String.format("Make: %s, Model: %s, Year: %d", make, model, year);
+    }
 }
