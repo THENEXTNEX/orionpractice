@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+
+  const [expenses, setExpenses] = useState([]);
+
+  const[textInput, setTextInput] = useState("");
+
+  const[amountInput, setAmount] = useState("");
+
+  const addExpense = () => {
+    if(textInput.trim() === "" || amountInput.trim() === "") return;
+    setExpenses([...expenses, {text:textInput, amount: parseFloat(amountInput)}]);
+    setTextInput("");
+    setAmount("");
+  };
+
+  const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+
+  return(
+    <div className="Expense List">
+
+      <h1>Expense List</h1>
+      <h2>Total: ${total.toFixed(2)}</h2>
+      <input
+        value={textInput} onChange={(e) => setTextInput(e.target.value)}
+        placeholder="Enter Expense Here:">
+      </input>
+      <input 
+      type="number" 
+      value={amountInput} 
+      onChange={(e) => setAmount(e.target.value)} 
+      placeholder="amount">
+      </input>
+      <button onClick={addExpense}>
+      Add Expense
+      </button>
+      <ul>
+        {expenses.map((expense, index) => (
+          <li key={index}>
+          {expense.text} - ${expense.amount.toFixed(2)}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
