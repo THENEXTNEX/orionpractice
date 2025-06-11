@@ -28,5 +28,10 @@ public class Book {
     public String getStatus(){return status;}
 
     public void setStatus(String status){this.status = status;}
+
+    @Override
+    public String toString(){
+        return String.format("Book information: Title: %s, Author: %s, isbn: %s, status: %s", title, author, isbn, status);
+    }
   
 }
