@@ -28,7 +28,6 @@ public class LibraryBranch {
     }
 
     public boolean findBookISBN(String isbn){
-        System.out.println("Finding book by isbn: " + isbn);
         for(Book b: books){
             if(b.getISBN().equalsIgnoreCase(isbn)){
                 return true;

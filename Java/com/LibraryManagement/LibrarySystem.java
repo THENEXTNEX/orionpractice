@@ -45,13 +45,16 @@ public class LibrarySystem {
     }
 
     public void findByISBN(String isbn){
+        boolean found = false;
+        System.out.println("Finding book by isbn: " + isbn);
         for(LibraryBranch libB: branches){
             if(libB.findBookISBN(isbn)){
                 System.out.println("Found book with isbn " + isbn + " at branch " + libB.getBranchName());
+                found = true;
             }
-            else{
-                System.out.println("Could not find book with isbn " + isbn);
-            }
+        }
+        if(!found){
+            System.out.println("Could not find book with isbn " + isbn);
         }
     }
 }
