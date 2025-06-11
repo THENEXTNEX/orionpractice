@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
-import TodoItem from './TodoItem';
+import TodoList from './ToDoList';
 import AddTodoForm from './AddToDoForm';
 
 function App() {
-  const [todos, setTodos] = useState([
-    { text: 'Buy groceries' },
-    { text: 'Walk the dog' },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const addTodo = (text) => {
-    setTodos([...todos, { text }]);
+    const newTodo = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
+  };
+
+  const toggleTodo = (id) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  };
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   return (
-    <div className="App">
-      <h1>My To-Do List</h1>
-      <AddTodoForm onAdd={addTodo} />
-      {todos.map((todo, index) => (
-        <TodoItem key={index} text={todo.text} />
-      ))}
+    <div style={{ padding: '2rem' }}>
+      <h1>My Todo List</h1>
+      <AddTodoForm addTodo={addTodo} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }
