@@ -1,3 +1,4 @@
+//can only be called inside functional components
 import{ useState } from "react";
 
 //Functional component
@@ -8,6 +9,7 @@ function App(){
   //const [CURRENT STATE, HOW TO CHANGE] = useState (initialisation) this case empty string
   const [input, setInput] = useState("");
 
+  const [filter, setFilter] = useState("all");
 
   const addTodo = () => {
     //trims white space so no empty todos
@@ -33,20 +35,25 @@ function App(){
       )
     );
   };
-
+  
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.done));
   };
 
   const remaining = todos.filter((todo) => !todo.done).length;
 
-
+  const filteredTodos = todos.filter((todo) => {
+    if(filter === "active") return !todo.done;
+    if(filter === "completed") return todo.done;
+    return true;
+  })
   //Every React component MUST return JSX (Javascript HTML)
   return(
     //Container
     <div className="App">
      
-      <h1>Todo List</h1>
+      <h1>Todo List </h1>
+      <h2>{remaining} {remaining === 1 ? "task" : "tasks"} left</h2>
       
       <input 
         value={input} //value from the React state
@@ -56,12 +63,22 @@ function App(){
       </input>
       
       <button //onClick={addToDo} runs the addToDo function
-      onClick={addTodo}>Add</button>
-      <p>
-        {remaining} {remaining === 1 ? "task" : "tasks"} left
-      </p>
+      onClick={addTodo}>Add
+      </button>
+      <div style={{ marginTop: "16px" }}>
+        <button onClick={() => setFilter("all")} disabled={filter === "all"}>
+          All
+        </button>
+        <button onClick={() => setFilter("active")} disabled={filter === "active"}>
+          Active
+        </button>
+        <button onClick={() => setFilter("completed")} disabled={filter === "completed"}>
+          Completed
+        </button>
+      </div>
+
       <ul>
-        {todos.map((todo,index) => (
+        {filteredTodos.map((todo,index) => (
           <li //{todos.map(...)} loops over the todos array, for every item in the list create a li item
               //index is used as it is a unique key
           key ={index}
