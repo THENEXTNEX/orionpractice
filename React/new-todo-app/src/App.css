@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+input {
+  margin-right: 8px;
+  padding: 6px;
+}
+
+button {
+  padding: 6px 12px;
+}
