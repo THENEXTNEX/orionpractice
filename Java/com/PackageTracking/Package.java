@@ -25,6 +25,6 @@ public class Package {
 
     @Override
     public String toString(){
-        return String.format("Package details: Tracking Number: %s, Destination: %s, Status:  %s", trackingNumber, destination, status);
+        return String.format("Package details: Tracking Number: %s, Destination: %s, Status: %s", trackingNumber, destination, status);
     }
 }

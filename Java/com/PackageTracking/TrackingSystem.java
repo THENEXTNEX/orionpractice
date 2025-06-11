@@ -30,6 +30,8 @@ public class TrackingSystem {
 
         system.listCouriers();
 
+        system.updateToDelivered();
+
         System.out.println("Searching for tracking number hello123 :");
         Package found = system.findPackageByTrackingNumber("hello123");
         if(found != null){
@@ -65,5 +67,16 @@ public class TrackingSystem {
             }
         }
         return null;
+    }
+
+    public void updateToDelivered(){
+        for(Courier courier: couriers){
+            for(Package p: courier.getPackages()){
+                if(p.getStatus().equalsIgnoreCase("In Transit")){
+                    System.out.println("Parcel "+ p + " has been updated to delivered.");
+                    p.setStatus("Delivered");
+                }
+            }
+        }
     }
 }
