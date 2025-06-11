@@ -19,13 +19,16 @@ function App(){
     setAmount("");
   };
 
-  const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+  const total = 
+    expenses.filter((expense) =>
+    filterCategory === "All" ? true : expense.category === filterCategory
+  ).reduce((sum, expense) => sum + expense.amount, 0);
 
   return(
     <div className="Expense List">
 
       <h1 style={{marginLeft:"8px"}}>Expense List</h1>
-      <h2 style={{marginLeft:"8px"}}>Total: ${total.toFixed(2)}</h2>
+      <h2 style={{marginLeft:"8px"}}>Total: ${total.toFixed(2)} (Category: {filterCategory})</h2>
       <input
         value={textInput} onChange={(e) => setTextInput(e.target.value)}
         placeholder="Enter Expense Here:"
