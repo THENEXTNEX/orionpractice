@@ -1,11 +1,11 @@
 package com.LibraryManagement;
 import java.util.List;
 
-public class LibrarbyBranch {
+public class LibraryBranch {
     private String branchName;
     private List<Book> books;
 
-    public LibrarbyBranch(String branchName, List<Book> books){
+    public LibraryBranch(String branchName, List<Book> books){
         this.branchName = branchName;
         this.books = books;
     }
@@ -31,7 +31,7 @@ public class LibrarbyBranch {
         System.out.println("Finding book by isbn: " + isbn);
         for(Book b: books){
             if(b.getISBN().equalsIgnoreCase(isbn)){
-                System.out.println("Found book with isbn " + isbn + " at branch" + branchName);
+                return true;
             }
         }
         return false;
