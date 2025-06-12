@@ -16,8 +16,14 @@ function App() {
   const[categoryFilter, setCategoryFilter] = useState("All");
 
   const completeTask = (index) => {
-    const update = [...tasks]
+    const update = [...tasks];
     update[index].isDone = true;
+    setTasks(update);
+  }
+
+  const undoTask = (index) => {
+    const update = [...tasks];
+    update[index].isDone = false;
     setTasks(update);
   }
 
@@ -98,7 +104,8 @@ function App() {
         categoryFilter === "All" ? true : task.category === categoryFilter).map((task, index) => (
           <li key={index}>
             {task.text} - Cost: ${task.amount} - Category: {task.category}
-            {!task.isDone ? <button onClick={()=>completeTask(index)} style={{marginLeft:"4px"}}>Complete Task</button> : <button style={{marginLeft:"4px"}}>Undo Completion</button>}        
+            {!task.isDone ? <button onClick={()=>completeTask(index)} style={{marginLeft:"4px"}}>Complete Task</button> : 
+            <button onClick={()=>undoTask(index)} style={{marginLeft:"4px"}}>Undo Completion</button>}        
           </li>
         ))}
       </ul>
