@@ -7,9 +7,13 @@ function App() {
 
   const[newTaskText, setTaskText] = useState("");
 
+  const[amount, setAmount] = useState(0);
+
+  const[amountText, setAmountText] = useState("");
+
   const addTask = () => {
-    if(newTaskText.trim() === "") return;
-    setTasks([...tasks, {text: newTaskText}]);
+    if(newTaskText.trim() === "" || amountText.trim() === "") return;
+    setTasks([...tasks, {text: newTaskText, amount: parseInt(amountText)}]);
     setTaskText("");
   }
 
@@ -18,19 +22,24 @@ function App() {
       <h1>Task Manager</h1>
       <h2>
         Task:
-        <input style={{marginLeft : "16px", marginRight: "16px"}}
+        <input style={{marginLeft : "16px"}}
           value={newTaskText}
           placeholder="Enter new task here..."
           onChange={(e) => setTaskText(e.target.value)}>
         </input>
-
+        <input 
+        value={amountText}
+        style={{marginLeft:"4px", marginRight: "16px"}}
+        placeholder="Enter Amount here..."
+        onChange={(e) => setAmountText(e.target.value)}>
+        </input>
         <button onClick={addTask}>Add Task</button>
       </h2>
 
       <ul>
         {tasks.map((task, index) => (
           <li key={index}>
-            {task.text}
+            {task.text} - Cost: ${task.amount}
           </li>
         ))}
       </ul>
