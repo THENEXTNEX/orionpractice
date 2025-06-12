@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -21,7 +21,7 @@ function App() {
     const id = setInterval(() => {
       setTaskList((prevList) => {
         const updated = [...prevList];
-        updated[index].time += 1;
+        updated[index] = {...updated[index], time: updated[index].time + 1}
         return updated;
       });
     }, 1000);
