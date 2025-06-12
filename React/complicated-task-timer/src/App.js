@@ -85,6 +85,7 @@ function App() {
           if(filter === "All") return true;
           if(filter === "Running") return task.isRunning;
           if(filter === "Stopped") return !task.isRunning;
+          return false;
         }).map((tasks, index) => (
           <li key={index}>
             {tasks.text} - {formatTime(tasks.time)}<button onClick={() => startTimer(index)} style={{ marginLeft: "16px" }}> Start </button> <button onClick={() => stopTimer(index)}>Stop</button>
