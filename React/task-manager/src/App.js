@@ -22,7 +22,9 @@ function App() {
   }
 
   const addTask = () => {
-    if(newTaskText.trim() === "" || amountText.trim() === "") return;
+    if(newTaskText.trim() === "" || 
+      amountText.trim() === "" || 
+      parseInt(amountText).isNaN) return;
     setTasks([...tasks, {text: newTaskText, amount: parseInt(amountText), category: categorySelect, isDone: false}]);
     setTaskText("");
     setAmountText("");
@@ -35,6 +37,7 @@ function App() {
     if(filter === "Not Done") return !task.isDone;
     return false;}).reduce((sum, amount) => sum + amount.amount, 0);
 
+  const isCompleted = tasks.filter(task => task.isDone).length
   return (
     <div style={{marginLeft: "16px"}}className="Task Manager">
       <h1>Task Manager</h1>
@@ -99,6 +102,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <h1>You have completed {isCompleted} out of {tasks.length} tasks!</h1>
     </div>
   );
 }
