@@ -25,9 +25,15 @@ function App() {
     if(newTaskText.trim() === "" || amountText.trim() === "") return;
     setTasks([...tasks, {text: newTaskText, amount: parseInt(amountText), category: categorySelect, isDone: false}]);
     setTaskText("");
+    setAmountText("");
   }
 
-  const total = tasks.reduce((sum, amount) => sum + amount.amount, 0);
+  const total = tasks.filter((task) => 
+    categoryFilter === "All" ? true : task.category === categoryFilter).filter((task) =>{
+    if(filter === "All") return true;
+    if(filter === "Completed") return task.isDone;
+    if(filter === "Not Done") return !task.isDone;
+    return false;}).reduce((sum, amount) => sum + amount.amount, 0);
 
   return (
     <div style={{marginLeft: "16px"}}className="Task Manager">
