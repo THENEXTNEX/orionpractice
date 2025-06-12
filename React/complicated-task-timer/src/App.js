@@ -18,19 +18,27 @@ function App() {
 
   const startTimer = (index) => {
     if (taskList[index].isRunning) return; // Already running
-
+    //Create new list to change
     const newList = [...taskList];
+    //Using the index given from the click, set isRunning to true
     newList[index].isRunning = true;
+    //Pass the list back
     setTaskList(newList);
 
+    //Setting an ID to handle each timer independantly
     const id = setInterval(() => {
+      //A new copy of the taskList is made using the previous state
       setTaskList((prevList) => {
         const updated = [...prevList];
+        //Finds the correct timer using index and adds 1 to the timer
         updated[index] = { ...updated[index], time: updated[index].time + 1 }
+        //return the new array to update the state
         return updated;
       });
+      //1000 = 1000ms = 1s so every second
     }, 1000);
 
+    //save the id in the interval object to be stopped when needed
     setIntervals((prev) => ({ ...prev, [index]: id }));
   };
 
