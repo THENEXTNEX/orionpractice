@@ -37,6 +37,7 @@ function App() {
     setTaskList(newList);
   };
 
+  const timerTotal = taskList.reduce((sum, time) => sum + time.time, 0);
   return (
     <div>
       <h1>Task Timer</h1>
@@ -47,7 +48,7 @@ function App() {
         placeholder="Enter Task here"
       />
       <button onClick={addTask}>Add Task</button>
-
+      <h2>Running Timer Total: {timerTotal}</h2>
       <ul>
         {taskList.map((task, index) => (
           <li key={index}>
