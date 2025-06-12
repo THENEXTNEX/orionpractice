@@ -62,12 +62,21 @@ function App() {
       <h3>
          Select Task Filter 
         <select
-        style={{marginLeft : "8px"}}
+        style={{marginLeft : "8px", marginRight: "8px"}}
         value={filter}
         onChange={(e) => setFilter(e.target.value)}>
           <option value={"All"}>All</option>
           <option value={"Completed"}>Completed</option>
           <option value={"Not Done"}>Not Done</option>
+        </select>
+        <select
+        value={categoryFilter}
+        onChange={(e) => setCategoryFilter(e.target.value)}>
+          <option value={"All"}>All</option>
+          <option value={"Personal"}>Personal</option>
+          <option value={"School"}>School</option>
+          <option value={"Travel"}>Travel</option>
+          <option value={"Food"}>Food</option>
         </select>
       </h3>
       <ul>
@@ -76,7 +85,8 @@ function App() {
           if(filter === "Completed") return task.isDone;
           if(filter === "Not Done") return !task.isDone;
           return false;
-        }).map((task, index) => (
+        }).filter((task) =>
+        categoryFilter === "All" ? true : task.category === categoryFilter).map((task, index) => (
           <li key={index}>
             {task.text} - Cost: ${task.amount} - Category: {task.category}
             {!task.isDone ? <button onClick={()=>completeTask(index)} style={{marginLeft:"4px"}}>Complete Task</button> : <button style={{marginLeft:"4px"}}>Undo Completion</button>}        
