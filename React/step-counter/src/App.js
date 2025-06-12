@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+function App (){
+
+
+  const[count, setCount] = useState(0);
+
+  const[stepText, setStepText] = useState("");
+
+  const addStep = () => {
+    if(stepText.trim() === "") return;
+    const parsed = parseInt(stepText);
+    if(!isNaN(parsed)){
+      setCount(prev => prev + parsed);
+    }
+    setStepText("");
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+    <h1 style={{marginLeft: "16px"}}>Step Counter App</h1>
+
+    <h2 style={{marginLeft: "16px"}}>Current Count: {count}</h2>
+    <h2 style={{marginLeft: "16px"}}>Step: 
+      <input
+      style={{marginLeft: "16px"}}
+      value={stepText}
+      onChange={(e) => setStepText(e.target.value)}
+      placeholder="Enter Amount of steps here"
+      ></input>
+      <button onClick={addStep}>Add Step</button>
+
+    <p>
+      <button> + </button>
+      <button style={{marginLeft: "16px"}}> - </button>
+      <button style={{marginLeft: "16px"}}> reset </button>
+    </p>
+    </h2>
+    
     </div>
-  );
+  )
 }
 
 export default App;
