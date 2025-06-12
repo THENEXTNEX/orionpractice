@@ -22,4 +22,9 @@ public class Expense {
     public String getCategory(){return category;}
 
     public void setCategory(String category){this.category = category;}
+
+    @Override
+    public String toString(){
+        return String.format("Expense Description: %s, Amount: %.2f, Category: %s", description, amount, category);
+    }
 }
