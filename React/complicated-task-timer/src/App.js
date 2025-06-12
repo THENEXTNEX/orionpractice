@@ -43,8 +43,10 @@ function App() {
   };
 
   const stopTimer = (index) => {
+    //Stops setInterval loop
     clearInterval(intervals[index]);
 
+    //Create new list and update isRunning to false based on the index, pass it back.
     const newList = [...taskList];
     newList[index].isRunning = false;
     setTaskList(newList);
