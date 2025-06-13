@@ -26,7 +26,14 @@ function App() {
     h.id === id ? {...h, isDone: !h.isDone} : h);
     setHabit(update);
   }
-
+  //Delete habit off list
+  const deleteHabit = (id) => {
+    setHabit(habit.filter(h => h.id !== id));
+  }
+  //Delete all items which are complete
+  const deleteAllCompleted = () => {
+    setHabit(habit.filter(h => !h.isDone))
+  }
   //Helper filter function
   const checkFilter = (habit) => {
     if(completeFilter === "All") return true;
@@ -72,10 +79,13 @@ function App() {
             <button onClick={()=> updateIsDone(habits.id)} style={{marginLeft: "8px"}}>Complete Habit</button>
             :<button onClick={()=> updateIsDone(habits.id)} style={{marginLeft: "8px"}}>Undo</button>
             }
+            <button //Delete individual list item
+            onClick={()=> deleteHabit(habits.id)} style={{marginLeft: "4px"}}>Delete</button>
           </li>
         ))}
       </ul>
-
+        <button //Delete all completed
+        onClick={() => deleteAllCompleted()}>DELETE ALL COMPLETED</button>
     </div>
   );
 }
