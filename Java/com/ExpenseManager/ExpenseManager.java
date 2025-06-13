@@ -16,15 +16,16 @@ public class ExpenseManager {
         String name = "";
         double amount = 0.0;
         String category = "";
-
+        String checkCategory = "";
 
         while (true) {
             System.out.println("Welcome to the expense tracker! Please select from the following!");
             System.out.println("1. Add Expense\n2. View All Expenses\n3. View by Category\n4. Show Summary\n5. Exit");
-            switch (scanner.nextInt()) {
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
                 case 1:
                     System.out.println("Adding Expense...");
-                    scanner.nextLine();
                     while (true) {
                         System.out.println("Please enter expense name: ");
                         name = scanner.nextLine();
@@ -67,11 +68,38 @@ public class ExpenseManager {
                     break;
 
                 case 2:
-                    scanner.nextLine();
+                    System.out.println("Listing all expenses...");
+                    System.out.println("");
                     expenseM.listExpenses();
+                    System.out.println("");
+                    break;
+                case 3:
+                    while (true) {
+                        System.out.println("Select a category you want to view by: ");
+                        System.out.println("Food --- Travel --- Personal.");
+                        checkCategory = scanner.nextLine();
+                        if (isValidCategory(checkCategory)) {
+                            System.out.println("You have selected the category: " + checkCategory);
+                            System.out.println("Displaying " + checkCategory + " Expenses...");
+                            expenseM.listCategory(checkCategory);
+                        }else{
+                            System.out.println("Please enter a valid category...");
+                            System.out.println("");
+
+                        }
+                    }
+                case 4:
+                    double foodTotal = 0;
+                    double travelTotal = 0;
+                    double personalTotal = 0;
+                    double total = 0;
+                    double average = 0;
+                    int numExpenses = 0;
+                    
+
             }
         }
-        
+
     }
 
     public static boolean isValidCategory(String category) {
@@ -92,6 +120,19 @@ public class ExpenseManager {
         }
         for (Expense e : expenseList) {
             System.out.println(e);
+        }
+    }
+
+    public void listCategory(String category){
+        int count = 0;
+        for(Expense e : expenseList){
+            if(e.getCategory().equalsIgnoreCase(category)){
+                count++;
+                System.out.println(e);
+            }
+        }
+        if(count == 0){
+            System.out.println("No expenses under the category: " + category);
         }
     }
 }
