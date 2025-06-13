@@ -11,6 +11,8 @@ function App() {
   //Category
   const[category, setCategory] = useState("Health");
 
+  //Category Filter
+  const[categoryFilter, setCategoryFilter] = useState("All");
   //Completion Filter
   const[completeFilter, setCompleteFilter] = useState("All");
 
@@ -34,11 +36,15 @@ function App() {
   const deleteAllCompleted = () => {
     setHabit(habit.filter(h => !h.isDone))
   }
-  //Helper filter function
-  const checkFilter = (habit) => {
+  //Helper completion filter function
+  const checkCompletionFilter = (habit) => {
     if(completeFilter === "All") return true;
     if(completeFilter === "Completed") return habit.isDone;
     if(completeFilter === "Not Completed") return !habit.isDone;
+  }
+  //Helper category filter function
+  const checkCategoryFilter = (habit) => {
+    return categoryFilter === "All" ? true : habit.category === categoryFilter;
   }
   return (
     <div style={{marginLeft: "16px"}} className="Habit Tracker App">
@@ -66,11 +72,21 @@ function App() {
             <option value={"Completed"}>Completed</option>
             <option value={"Not Completed"}>Not Completed</option>
           </select>
+          <select //Category filter
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          style={{marginLeft : "16px"}}>
+            <option value={"All"}>All</option>
+            <option value={"Health"}>Health</option>
+            <option value={"Productivity"}>Productivity</option>
+            <option value={"Mindfulness"}>Mindfulness</option>
+          </select>
         </h2>
       <ul //Habit List generation
       >
         {habit.filter((habits) => {
-          return checkFilter(habits)
+          return checkCompletionFilter(habits)
+        }).filter((habits) => {
+          return checkCategoryFilter(habits)
         }).map((habits) => (
           <li key={habits.id}
           style={{textDecoration: habits.isDone ? "line-through" : "none"}}>
