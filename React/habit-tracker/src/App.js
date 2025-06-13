@@ -46,6 +46,10 @@ function App() {
   const checkCategoryFilter = (habit) => {
     return categoryFilter === "All" ? true : habit.category === categoryFilter;
   }
+  //Count how many items have been completed
+  const countCompleted = habit.filter((habit) => habit.isDone).filter((habits) => 
+    checkCategoryFilter(habits)).filter((habits) => 
+    checkCompletionFilter(habits)).reduce((sum, habit) => sum + habit.isDone, 0);
   return (
     <div style={{marginLeft: "16px"}} className="Habit Tracker App">
       <h1>Habit Tracking App</h1>
@@ -64,6 +68,7 @@ function App() {
         </select>
         <button onClick={addHabit} style={{marginLeft: "8px"}}>Add Habit</button>
         </h2>
+        <h2>You have completed {countCompleted} tasks out of {habit.length}!</h2>
         <h2>Selection Completion Filter: 
           <select //Completion filter box
           onChange={(e) => setCompleteFilter(e.target.value)} style={{marginLeft : "16px"}}
