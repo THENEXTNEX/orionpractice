@@ -107,13 +107,14 @@ public class ExpenseManager {
 
                 case 5:
                     System.out.println("Thank you for using this expense manager!");
+                    scanner.close();
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Please enter a valid number between 1 - 5");
                     System.out.println("");
             }
-        }
+        } 
     }
 
     public static boolean isValidCategory(String category) {
